@@ -19,5 +19,18 @@ At its core, Redis maps unique **keys** to **values**.
 - **User Session Management:** Storing active user session tokens as keys, with the corresponding session data stored as the value.
 - **Rate Limiting:** Storing user IPs or API keys as the key, and the connection count as the value, ensuring the number of requests stays within limits.
 
+## Redis Client Functions (Commands)
+Redis clients communicate with the Redis server using a standardized set of commands. When strictly using Redis as a key-value store, the most common functions supported by clients include:
+
+- **`SET key value`**: Creates a new key-value pair or overwrites an existing one. Options can be added to only set if it does or does not exist, or to attach a TTL immediately.
+- **`GET key`**: Retrieves the value associated with a specific key. If the key does not exist, it returns a null value.
+- **`DEL key`**: Removes a key and its associated value from memory.
+- **`EXISTS key`**: Checks whether a specific key exists in the database. Returns `1` if the key exists, or `0` if it does not.
+- **`EXPIRE key seconds`**: Assigns a Time-To-Live (TTL) to a key, in seconds. After the specified time passes, the key is automatically deleted.
+- **`TTL key`**: Returns the remaining time to live of a key that has an expiration set.
+- **`INCR key` / `DECR key`**: Atomically increments or decrements the integer value of a key by one. Useful for counters or rate limiters.
+- **`MSET key value [key value ...]`**: Sets multiple key-value pairs in a single atomic operation.
+- **`MGET key [key ...]`**: Retrieves the values of multiple keys in a single atomic operation, reducing network round trips.
+
 ## Summary
 When utilized as a strict key-value store, Redis provides a very direct, highly efficient way to retrieve data via unique identifiers. Its in-memory design guarantees blazing fast performance, making it an essential tool for high-speed caching and instantaneous data access.
